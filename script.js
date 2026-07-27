@@ -1,23 +1,27 @@
 //Post Method
 
 async function createPost() {
-    
+
+    const title = document.getElementById("posttitle").value
+    const body = document.getElementById("postbody").value
+    const userId = Number(document.getElementById("postuserId").value)
+
     const output = document.getElementById("output")
 
-    try{
+    try {
         const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
             method: "POST",
-            headers: {"Content-Type" :"application/json"},
+            headers: { "Content-Type": "application/json" },
 
             body: JSON.stringify({
-                title: "Jason and his first Post",
-                body: "This is the body of my post, I do not know what to say",
-                userId: 1
+                title: title,
+                body: body,
+                userId: userId
             })
         });
 
-        if(!response.ok){
-            throw new Error ("Failed to Create Post");
+        if (!response.ok) {
+            throw new Error("Failed to Create Post");
         }
 
         const data = await response.json()
@@ -26,7 +30,7 @@ async function createPost() {
                             <pre>${JSON.stringify(data, null, 2)}</pre>`;
 
     }
-    catch(error){
+    catch (error) {
         output.innerHTML = `<p style="color: red">${error.message}</p>`;
 
     }
@@ -35,23 +39,29 @@ async function createPost() {
 //Put Method
 
 async function updatePost() {
-    
+
+    const title = document.getElementById("puttitle").value
+    const body = document.getElementById("putbody").value
+    const userId = Number(document.getElementById("putuserId").value)
+
+    const postId = Number(document.getElementById("putpostId").value)
+
     const output = document.getElementById("output")
 
-    try{
-        const response = await fetch("https://jsonplaceholder.typicode.com/posts/1", {
+    try {
+        const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`, {
             method: "PUT",
-            headers: {"Content-Type" :"application/json"},
+            headers: { "Content-Type": "application/json" },
 
             body: JSON.stringify({
-                title: "Jason and his first Updated Post",
-                body: "This is the body of my updated post, I still do not know what to say",
-                userId: 1
+                title: title,
+                body: body,
+                userId: userId
             })
         });
 
-        if(!response.ok){
-            throw new Error ("Failed to update Post");
+        if (!response.ok) {
+            throw new Error("Failed to update Post");
         }
 
         const data = await response.json()
@@ -60,7 +70,7 @@ async function updatePost() {
                             <pre>${JSON.stringify(data, null, 2)}</pre>`;
 
     }
-    catch(error){
+    catch (error) {
         output.innerHTML = `<p style="color: red">${error.message}</p>`;
 
     }
@@ -68,21 +78,23 @@ async function updatePost() {
 
 //Patch Method
 async function patchPost() {
-    
+    const title = document.getElementById("patchtitle").value
+    const postId = Number(document.getElementById("patchpostId").value)
+
     const output = document.getElementById("output")
 
-    try{
-        const response = await fetch("https://jsonplaceholder.typicode.com/posts/1", {
+    try {
+        const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`, {
             method: "PATCH",
-            headers: {"Content-Type" :"application/json"},
+            headers: { "Content-Type": "application/json" },
 
             body: JSON.stringify({
-                title: "Jason just changed this title"
+                title: title
             })
         });
 
-        if(!response.ok){
-            throw new Error ("Failed to Patch Post");
+        if (!response.ok) {
+            throw new Error("Failed to Patch Post");
         }
 
         const data = await response.json()
@@ -91,7 +103,7 @@ async function patchPost() {
                             <pre>${JSON.stringify(data, null, 2)}</pre>`;
 
     }
-    catch(error){
+    catch (error) {
         output.innerHTML = `<p style="color: red">${error.message}</p>`;
 
     }
@@ -99,25 +111,25 @@ async function patchPost() {
 
 //Delete Method
 async function deletePost() {
-    
+    const postId = Number(document.getElementById("deletepostId").value)
+
     const output = document.getElementById("output")
 
-    try{
-        const response = await fetch("https://jsonplaceholder.typicode.com/posts/1", {
+    try {
+
+        const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`, {
             method: "DELETE"
         });
 
-        if(!response.ok){
-            throw new Error ("Failed to delete Post");
+
+        if (!response.ok) {
+            throw new Error("Failed to delete Post");
         }
 
-        const data = await response.json()
-
-        output.innerHTML = `<p>Your Post was deleted successfully</p>
-                            <pre>${JSON.stringify(data, null, 2)}</pre>`;
+        output.innerHTML = `<p>Your Post was deleted successfully</p>`
 
     }
-    catch(error){
+    catch (error) {
         output.innerHTML = `<p style="color: red">${error.message}</p>`;
 
     }

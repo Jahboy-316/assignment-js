@@ -1,18 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <button onclick="createPost()">POST</button>
-    <button onclick="updatePost()">PUT</button>
-    <button onclick="patchPost()">PATCH</button>
-    <button onclick="deletePost()">DELETE</button>
+
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 50px;">
+        <div id="createApost" style="display: flex; flex-direction: column;">
+            <h2>Post Method</h2>
+            <input type="text" id="posttitle" placeholder="Enter Title">
+            <input type="text" id="postbody" placeholder="Enter body text">
+            <input type="number" id="postuserId" placeholder="Enter ID">
+
+            <button onclick="createPost()">POST</button>
+        </div>
+
+        <div id="editApost" style="display: flex; flex-direction: column;">
+            <h2>Put Method</h2>
+            <input type="text" id="puttitle" placeholder="Enter Title">
+            <input type="text" id="putbody" placeholder="Enter body text">
+            <input type="number" id="putuserId" placeholder="Enter ID">
+            <input type="number" id="putpostId" placeholder="Enter ID of the post to edit">
+
+            <button onclick="updatePost()">PUT</button>
+        </div>
+
+        <div id="patchApost" style="display: flex; flex-direction: column;">
+            <h2>Patch Method</h2>
+            <input type="text" id="patchtitle" placeholder="Enter Title">
+            <input type="number" id="patchpostId" placeholder="Enter ID of the post to edit">
+            
+
+            <button onclick="patchPost()">PATCH</button>
+        </div>
+
+        <div id="deleteApost" style="display: flex; flex-direction: column;">
+            <h2>Delete Method</h2>
+            <input type="number" id="deletepostId" placeholder="Enter ID of the post to delete">
+
+            <button onclick="deletePost()">DELETE</button>
+        </div>
+
+    </div>
 
     <div id="output"></div>
 
     <script src="script.js" defer></script>
 </body>
+
 </html>
